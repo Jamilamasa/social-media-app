@@ -36,23 +36,23 @@ const Login = () => {
         </Heading>
 
         <form onSubmit={handleSubmit(handleLogin)}>
-          <FormControl py="2">
+          <FormControl py="2" isInvalid={errors.email}>
             <FormLabel>Email</FormLabel>
             <Input
               type="email"
               placeholder="user@email.com"
               {...register("email", emailValidate)}
             />
-            <FormErrorMessage></FormErrorMessage>
+            <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
           </FormControl>
-          <FormControl py="2">
+          <FormControl py="2" isInvalid={errors.password}>
             <FormLabel>Password</FormLabel>
             <Input
               type="password"
               placeholder="password123"
               {...register("password", passwordValidate)}
             />
-            <FormErrorMessage></FormErrorMessage>
+            <FormErrorMessage>{errors.password && errors.password.message}</FormErrorMessage>
           </FormControl>
           <Button
             mt="4"
@@ -60,7 +60,7 @@ const Login = () => {
             colorScheme="teal"
             size="md"
             w="full"
-            isLoading={false}
+            isLoading={isLoading}
             loadingText="Logging In"
           >
             Log In

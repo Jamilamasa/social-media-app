@@ -38,6 +38,7 @@ export const useLogin = () => {
         position: 'top',
         duration: 5000
       })
+      setLoading(false);
       return false //Return false if login failed
     }
     setLoading(false);
