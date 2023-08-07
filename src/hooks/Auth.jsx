@@ -1,6 +1,10 @@
 import { useToast } from "@chakra-ui/react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +13,27 @@ import { DASHBOARD, LOGIN } from "../lib/routers";
 import isUsernameExist from "../utils/isUserNameExist";
 
 export const useAuth = () => {
-  const [authUser, isLoading, error] = useAuthState(auth);
-  return { user: authUser, isLoading, error };
+  const [authUser, authLoading, error] = useAuthState(auth);
+  const [isLoading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const ref = doc(db, "users", authUser.uid);
+
+      const docSnap = getDoc(ref);
+      setUser(docSnap.data());
+      setLoading(false);
+    };
+    if (!authLoading) {
+      if (authUser) {
+        fetchData()
+      } else setLoading(false);
+    }
+  }, [authLoading]);
+
+  return { user, isLoading, error };
 };
 
 export const useLogin = () => {
@@ -77,7 +100,7 @@ export const useRegister = () => {
     } else {
       try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
-        const docReference = doc(db, "users", res.user.uid)
+        const docReference = doc(db, "users", res.user.uid);
         await setDoc(docReference, {
           id: res.user.uid,
           username: username.toLowerCase(),
