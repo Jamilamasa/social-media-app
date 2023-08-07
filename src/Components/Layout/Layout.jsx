@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { LOGIN } from "../../lib/routers";
 import { useAuth } from "../../hooks/Auth";
+import Navbar from "../Navbar/Navbar";
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -19,7 +20,7 @@ const Layout = () => {
   }
   return (
     <>
-      <div>This is the child</div>
+      <Navbar/>
       <Outlet />
     </>
   );
