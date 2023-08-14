@@ -2,12 +2,16 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "../Components/Auth/Login";
 // import Login from "../Components/Auth/Login";
 import Register from "../Components/Auth/Register";
+import Root from "../Components/Dashboard/Root";
 import Layout from "../Components/Layout/Layout";
 export const ROOT = "/";
 export const LOGIN = "/login";
 export const REGISTER = "/register";
 export const DASHBOARD = "/protected/dashboard";
 export const PROTECTED = "/protected";
+export const USERS = "/protected/users";
+export const PROFILE = "/protected/profile/:id";
+
 export const router = createBrowserRouter([
   {
     path: ROOT,
@@ -23,7 +27,11 @@ export const router = createBrowserRouter([
   },
   {
     path: PROTECTED,
-    element: <Layout/>,
-    children: [{path: DASHBOARD, element: "Dashboard"}]
+    element: <Layout />,
+    children: [
+      { path: DASHBOARD, element: <Root/> },
+      { path: USERS, element: "Users" },
+      {path: PROFILE, element: "Profile Page for a particular user"},
+    ],
   },
 ]);
