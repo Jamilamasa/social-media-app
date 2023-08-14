@@ -22,7 +22,7 @@ export const useAuth = () => {
       setLoading(true);
       const ref = doc(db, "users", authUser.uid);
 
-      const docSnap = getDoc(ref);
+      const docSnap = await getDoc(ref);
       setUser(docSnap.data());
       setLoading(false);
     };
