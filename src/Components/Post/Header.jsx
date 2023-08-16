@@ -22,7 +22,7 @@ const Header = ({post}) => {
           <Text fontSize="sm" color="gray.500">
             {formatDistanceToNow(date)} ago
           </Text>
-        </Box> */}
+        </Box>  */}
       </Flex>
     );
 }
