@@ -1,10 +1,11 @@
-import { Box, Button, Heading, HStack, Textarea } from '@chakra-ui/react'
-import React from 'react'
-import { useForm } from 'react-hook-form';
-import { useAuth } from '../../hooks/Auth';
-import { useAddPost } from '../../hooks/Posts';
+import { Box, Button, Heading, HStack, Textarea } from "@chakra-ui/react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../../hooks/Auth";
+import { useAddPost, usePosts } from "../../hooks/Posts";
+import PostsList from "../Post/PostsList";
 
-const Root = () => {
+const NewPost = () => {
   const { register, handleSubmit, reset } = useForm();
   const { addPost, isLoading: addingPost } = useAddPost();
   const { user, isLoading: authLoading } = useAuth();
@@ -20,7 +21,7 @@ const Root = () => {
 
   return (
     <Box maxW="600px" mx="auto" py="10">
-      <form onSubmit={handleSubmit(handleAddPost)}> 
+      <form onSubmit={handleSubmit(handleAddPost)}>
         <HStack justify="space-between">
           <Heading size="lg">New Post</Heading>
           <Button
@@ -42,7 +43,19 @@ const Root = () => {
         />
       </form>
     </Box>
-  )
-}
+  );
+};
 
-export default Root
+const Dashboard = () => {
+  const { posts, isLoading } = usePosts();
+
+  // if (isLoading) return "Loading posts...";
+
+  return (
+    <>
+      <NewPost />
+      <PostsList posts={posts } />
+    </>
+  );
+};
+export default Dashboard;
