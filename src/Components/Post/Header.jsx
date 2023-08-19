@@ -1,9 +1,11 @@
-import { Avatar, Box, Flex } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
+import Avatar from "../Profile/Avatar"
 import React from 'react'
+import { useUser } from '../../hooks/Users';
 
-const Header = ({post}) => {
+const Header = ({post }) => {
     const { uid, date } = post;
-    // const { user, isLoading } = useUser(uid);
+    const { user, isLoading } = useUser(uid);
   
     // if (isLoading) return "Loading...";
   
@@ -15,9 +17,9 @@ const Header = ({post}) => {
         p="3"
         bg="gray.50"
       >
-        {/* <Avatar user={user} size="md" />
+        <Avatar user={user} size="md" />
   
-        <Box ml="4">
+        {/* <Box ml="4">
           <UsernameButton user={user} />
           <Text fontSize="sm" color="gray.500">
             {formatDistanceToNow(date)} ago
