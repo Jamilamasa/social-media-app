@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Login from "../Components/Auth/Login";
 // import Login from "../Components/Auth/Login";
 import Register from "../Components/Auth/Register";
@@ -15,7 +15,7 @@ export const PROFILE = "/protected/profile/:id";
 export const router = createBrowserRouter([
   {
     path: ROOT,
-    element: "PUBLIC ROOT",
+    element: <Navigate to="/login"/>,
   },
   {
     path: LOGIN,
