@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { PROTECTED } from "../../lib/routers";
 import { useAuth } from "../../hooks/Auth";
 
-const Avatar = ({user, size="xl"}) => {
-  
+const Avatar = ({ user, size = "xl", overrideAvatar = null }) => {
   if (!user) return "Loading...";
   return (
     <ChakraAvatar
@@ -13,7 +12,7 @@ const Avatar = ({user, size="xl"}) => {
       to={`${PROTECTED}/profile/${user.id}`}
       name={user.username}
       size={size}
-      src={user.avatar}
+      src={overrideAvatar || user.avatar}
       _hover={{ cursor: "pointer", opacity: "0.8" }}
     />
   );

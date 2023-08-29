@@ -13,7 +13,7 @@ import { useUser } from "../../hooks/Users";
 import { useParams } from "react-router-dom";
 import Avatar from "./Avatar";
 import { format } from "date-fns";
-import EditProfile from "./EditProfile";
+import EditProfile from "./EditProfile"; 
 import { useAuth } from "../../hooks/Auth";
 
 export default function Profile() {
@@ -53,7 +53,7 @@ export default function Profile() {
               Likes: todo!
             </Text>
             <Text color="gray.700" fontSize={["sm", "lg"]}>
-              Joined: {format(user.date, "MMMM YYY")}
+              Joined: {format(user.date, "dd MMMM YYY")}
             </Text>
           </HStack>
         </Stack>

@@ -6,6 +6,7 @@ import Root from "../Components/Dashboard/Root";
 import Layout from "../Components/Layout/Layout";
 import Comments from "../components/Comments/Comments";
 import Profile from "../Components/Profile/Profile";
+import Users from "../Components/Users/Users";
 
 export const ROOT = "/";
 export const LOGIN = "/login";
@@ -34,8 +35,8 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: DASHBOARD, element: <Root /> },
-      { path: USERS, element: "Users" },
-      { path: PROFILE, element: <Profile/> },
+      { path: USERS, element: <Users/> },
+      { path: PROFILE, element: <Profile /> },
       {
         path: COMMENTS,
         element: <Comments />,

@@ -37,7 +37,7 @@ export const useUpdateAvatar=(uid)=> {
   
       setLoading(true);
   
-      const fileRef = ref(storage, "avatars/" + uid);
+      const fileRef = ref(storage, `avatars/${uid}`);
       await uploadBytes(fileRef, file);
   
       const avatarURL = await getDownloadURL(fileRef);
