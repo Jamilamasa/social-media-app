@@ -114,7 +114,13 @@ export const usePosts = (uid = null) => {
     : query(collection(db, "posts"), orderBy("date", "desc"));
 
   const [posts, isLoading, error] = useCollectionData(q);
+  let likes = 0;
+
+  posts?.forEach((post)=>{
+    likes += post.likes.length
+  })
+ 
 
   if (error) throw error;
-  return { posts, isLoading };
+  return { posts, isLoading, likes };
 };

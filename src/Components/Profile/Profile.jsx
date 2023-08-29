@@ -18,10 +18,11 @@ import { useAuth } from "../../hooks/Auth";
 
 export default function Profile() {
   const { id } = useParams();
-  const { posts, isLoading: postsLoading } = usePosts(id);
+  const { posts, isLoading: postsLoading, likes } = usePosts(id);
   const { user, isLoading: userLoading } = useUser(id);
   const { user: authUser, isLoading: authLoading } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
 
   if (userLoading) return "Loading...";
 
@@ -50,7 +51,7 @@ export default function Profile() {
               Posts: {posts.length}
             </Text>
             <Text color="gray.700" fontSize={["sm", "lg"]}>
-              Likes: todo!
+              Likes: {likes}
             </Text>
             <Text color="gray.700" fontSize={["sm", "lg"]}>
               Joined: {format(user.date, "dd MMMM YYY")}
